@@ -1,0 +1,2 @@
+This is an implementation of concurrent Unix shell with multithreading strategy in Java.
+Command lines like pwd, cd, ls, wc, uniq, grep, > and exit are implemented, along with background processing function.
