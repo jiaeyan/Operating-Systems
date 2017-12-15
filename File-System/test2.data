@@ -1,0 +1,38 @@
+// test2.data:  simple test for single double and triple indirection
+
+
+// 1. Format the disk with 100000 blocks total: (1 superblock, 1 inode block,
+//    and the rest are data blocks).
+formatDisk 100000 1
+
+// 2. Write 8 single-indirect blocks.
+file1 = create
+inum1 = inumber file1
+seek file1 17920 0
+write file1 Aaayyy! 4096
+
+seek file1 17920 0
+read file1 7
+
+// 3. Now write 6 double-indirect blocks.
+file2=create
+inum2 = inumber file2
+seek file2 397312 0
+write file2 Aaayyy! 3072
+
+seek file2 397312 0
+read file2 7
+
+// 4. Write 4 triple-indirect blocks.
+file3 = create
+inum3 = inumber file3
+seek file3 50401792 0
+write file3 Aaayyy! 2048
+
+seek file3 50401792 0
+read file3 7
+
+// If your code has not terminated on its own, shutdown and quit.
+shutdown
+quit
+
